@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TimerScript : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class TimerScript : MonoBehaviour
     public Text timerText;
     void Start()
     {
-        timerText.text = gameOver.ToString();
+        // timerText.text = gameOver.ToString();
         timerText.text = counter.ToString();
         StartCoroutine(hitungmundur());
     }
@@ -24,14 +25,11 @@ public class TimerScript : MonoBehaviour
 
     IEnumerator hitungmundur(){
         while(counter>0){
-        yield return new WaitForSeconds(1);
-        counter -= 1;
-        timerText.text = counter.ToString();
-        if (counter==0){
-        timerText.text = gameOver.ToString();    
+			yield return new WaitForSeconds(1);
+			counter -= 1;
+			timerText.text = counter.ToString();
         }
-        }
+		
+		SceneManager.LoadScene("GameOverScene");
     }
-
-   
 }
